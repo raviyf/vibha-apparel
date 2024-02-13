@@ -12,6 +12,7 @@ import { useStore } from "@lib/context/store-context"
 import ChevronDown from "@modules/common/icons/chevron-down"
 import { MagnifyingGlassMini, XMark as X } from "@medusajs/icons"
 import { Heading } from "@medusajs/ui"
+import MainMenu from "@modules/mobile-menu/components/main-menu"
 
 const FooterNav = () => {
   const { collections } = useCollections()
@@ -19,32 +20,40 @@ const FooterNav = () => {
   const countries = useCountryOptions()
   const { countryCode } = useStore()
 
+  const setScreenCountry = () => setScreen("country")
+  const setScreenSearch = () => setScreen("search")
+  const {
+    close,
+    screen: [_, setScreen],
+  } = useMobileMenu()
+
   return (
     <div>
       <div className="flex flex-row">
-        <div className="2xl:pl-20 2xl:pt-10">
-          <text className="xl:text-4xl md:text-2xl font-optinonoy md:pb-10 md:px-4 px-10 2xl:pl-48 md:pl-36">
+        <div className=" 2xl:pt-10">
+          <text className="xl:text-4xl md:text-2xl font-optinonoy md:pb-10   md:pl-16   2xl:pl-36">
             Sign up and get 10% off*
           </text>
-          <div className="md:pl-32 2xl:pl-48  sm:px-0 pl-0  ">
-            <p className=" font-helvitica  text-sm md:grid md:grid-row-2 md:gap-4 md:place-content-center md:h-full md:p-6 p-1 pl-3 md:px-3 md:pt-6 md:w-80 w-98  ">
+
+          <div className="md:pl-16 2xl:pl-36  sm:px-0 pl-0  ">
+            <p className=" font-helvitica  text-sm md:grid md:grid-row-2   md:h-full md:p-6 p-1 pl-3 md:px-3 md:pt-6 md:w-80 w-98  ">
               Be first to receive updates on new collections,style
               inspiration,gift ideas and exclusive access. Sign up to Vibha
               Eternal Club today and receive 10% off* on your next online
               purchase(full-price items only).*Terms and condition apply.
             </p>
           </div>
-          <p className="pl-10 pb-10 pt-3 2xl:pl-52 md:pb-10 md:pl-40">
+          <p className="pl-10 pb-10 pt-3 2xl:pl-36 md:pb-10 md:pl-16">
             <a
               href="http://localhost:8000/account/login"
-              className="top-11 px-8 py-2 rounded-full font-holispay bg-darkmaroon text-cream text-center"
+              className="top-11 px-8 py-2 rounded-full font-holispay bg-darkmaroon text-black text-center"
             >
               Join the club
             </a>
           </p>
         </div>
-        <div className="2xl:pl-58 2xl:pb-96">
-          <p className=" absolute font-bold font-holispay lg:text-9xl 2xl:text-10xl px-10 text-darkmaroon lg:pl-96 md:text-8xl text-9xl md:pl-48">
+        <div className="text-darkmaroon">
+          <p className="  font-bold font-holispay pb-8 lg:pl-[28rem] pl-8 text-9xl sm:pl-[15rem] sm:text-[14rem] md:pl-[10rem]  ">
             V
           </p>
         </div>
@@ -188,20 +197,22 @@ const FooterNav = () => {
                   </ul>
                 </div>
               </div>
-              <div className="">
-                <p className="text-2xl  font-optinonoy flex flex-col gap-y-2">
-                  Latest from Vibha
-                </p>
-                <p className="w-60 text-md font-helvitica md-md">
-                  Be the first to know about exciting new designs,special
-                  events,store openings and much more
-                </p>
+              <div className="flex flex-row sm:flex-col">
+                <div>
+                  <p className="text-2xl  font-optinonoy flex flex-col gap-y-2">
+                    Latest from Vibha
+                  </p>
+                  <p className="w-60 text-md font-helvitica md-md">
+                    Be the first to know about exciting new designs,special
+                    events,store openings and much more
+                  </p>
+                </div>
                 {/* <input
                   type="text"
                   className="rounded-full font-helvitica p-2 bg-white/60"
                   placeholder="Email"
                       />*/}
-                <p className="pt-4">
+                <p className="pt-8">
                   <a
                     href="http://localhost:8000/account/login"
                     className=" font-optinonoy inline-block rounded-lg px-4 py-1 border-2 border-black text-black"
@@ -209,13 +220,6 @@ const FooterNav = () => {
                     SIGN UP
                   </a>
                 </p>
-              </div>
-              <div className="flex items-center md:pt-32 gap-x-2">
-                <ReactCountryFlag countryCode={countryCode || "us"} svg />
-                <span className="normal-case">
-                  Shipping to{" "}
-                  {countries?.find((c) => c.country === countryCode)?.label}
-                </span>
               </div>
             </div>
           </div>
